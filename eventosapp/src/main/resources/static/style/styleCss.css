@@ -1,0 +1,31 @@
+.detalhesEvento{
+	padding-top: 20px;
+	padding-left: 20px;
+	margin-bottom: 60px;
+}
+
+.formConvidado{
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-bottom: 10px;
+	margin-bottom: 60px;
+}
+
+.tabelaConvidado{
+	width: 50%;
+}
+
+.formEvento{
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-bottom: 10px;
+	margin-bottom: 60px;
+}
+
+.menu{
+	background-color: #3399ff;
+}
+
+nav a {
+	margin-left: 30px;
+}
