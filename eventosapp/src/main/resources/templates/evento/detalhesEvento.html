@@ -13,11 +13,11 @@
 <body>
 
 	<header>
-		<nav class="menu">
+		<nav class="menu green lighten-3">
 		    <div class="nav-wrapper">
 		      <a href="#" class="brand-logo">Evento</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Lista de evento</a></li>
+		        <li><a href="/eventos" class="waves-effect waves-light btn light green darken-3"><i class="material-icons left">format_list_bulleted</i>Lista de evento</a></li>
 		      </ul>
 		    </div>
 		</nav>
@@ -33,12 +33,12 @@
 		</div>
 	</div>
 	
-		 <th:block th:include="mensagemValidacao"></th:block>
+		<th:block th:include="mensagemValidacao"></th:block>
 		<div class="container formConvidado">
 		<form method="post" th:object="${convidado}">
 			Nome: <input type="text" value="" name="nomeConvidado" placeholder="Nome Completo"/>
 			CPF: <input type="text" value="" name="cpf" placeholder="Somente números" class="validate"/>
-			<button class="waves-effect waves-light btn" type="submit">Adicionar</button>
+			<button class="waves-effect waves-light btn lighten green darken-3" type="submit">Adicionar</button>
 		</form>
 		</div>
 
@@ -51,10 +51,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="convidado : ${convidados}">
+			<tr th:each="convidado : ${convidado}">
 				<td><span th:text="${convidado.nomeConvidado}"></span></td>
 				<td><span th:text="${convidado.cpf}"></span></td>
-				<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.idConvidado)).build()}"><i class="material-icons left">delete</i></a></td>
+				<td><a class="waves-effect waves-light btn-small red darken-1" th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.idConvidado)).build()}"><i class="material-icons center">delete</i></a></td>
 			</tr>
 		</tbody>
 	</table>

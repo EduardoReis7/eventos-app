@@ -2,6 +2,7 @@
 	padding-top: 20px;
 	padding-left: 20px;
 	margin-bottom: 60px;
+	width: 50%;
 }
 
 .formConvidado{
@@ -9,10 +10,15 @@
 	padding-left: 20px;
 	padding-bottom: 10px;
 	margin-bottom: 60px;
+	width: 50%;
 }
 
 .tabelaConvidado{
 	width: 50%;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-bottom: 10px;
+	margin-bottom: 60px;
 }
 
 .formEvento{
