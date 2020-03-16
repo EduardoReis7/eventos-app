@@ -28,7 +28,7 @@ public class Convidado{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id_convidado", updatable = false, nullable = false)
-	private long idConvidado;
+	private Long idConvidado;
 	
 	@NotBlank
 	private String nomeConvidado;

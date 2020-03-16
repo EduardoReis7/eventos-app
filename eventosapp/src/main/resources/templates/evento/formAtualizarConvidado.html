@@ -15,7 +15,7 @@
 	<header>
 		<nav class="menu green lighten-3">
 		    <div class="nav-wrapper">
-		      <a href="#" class="brand-logo">Evento</a>
+		      <a href="/" class="brand-logo">Evento</a>
 		      <ul id="nav-mobile" class="right hide-on-med-and-down">
 		        <li><a href="/eventos" class="waves-effect waves-light btn light green darken-3"><i class="material-icons left">format_list_bulleted</i>Lista de eventos</a></li>
 		      </ul>
@@ -25,24 +25,24 @@
 	
 	<th:block th:include="mensagemValidacao"></th:block>
 
-	<table class="container tabelaConvidado">
-		<thead>
-			<tr>
-				<th>Nome Convidado</th>
-				<th>CPF</th>
-				<th>Atualizar</th>
-				<th>Deletar</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="convidado : ${convidado}">
-				<td><span th:text="${convidado.nomeConvidado}"></span></td>
-				<td><span th:text="${convidado.cpf}"></span></td>
-				<td><a class="waves-effect waves-light btn-small light green darken-3" th:href="${(#mvc.url('EC#atualizarConvidado').arg(0, convidado.idConvidado).build()})"></a><i class="material-icons center">delete</i></a></td>
-				<td><a class="waves-effect waves-light btn-small red darken-1" th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.idConvidado)).build()}"><i class="material-icons center">delete</i></a></td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="container formAtualizarConvidado">
+		<form method="post" th:action="@{/atualizarConvidado/{idConvidado}(idConvidado=${convidado.idConvidado})}" th:object="${convidado}">
+			<div class="row">
+				Nome: <input type="text" th:field="*{nomeConvidado}"/>
+				<div class="input-field col s6">
+					CPF: <input type="text" th:field="*{cpf}"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					ID Evento: <input type="text" th:field="*{eventos.id}" readonly/>
+				</div>
+			</div>
+			<button class="waves-effect waves-light btn light green darken-3" type="submit">Salvar</button>
+		</form>
+		
+	
+	</div>
 	
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 

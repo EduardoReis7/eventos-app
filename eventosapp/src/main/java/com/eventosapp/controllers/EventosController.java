@@ -123,18 +123,46 @@ public class EventosController {
 	
 	//Atualiza um convidado da lista
 	
-	@RequestMapping(value = "/atualizarConvidado/{idConvidado/", method = RequestMethod.GET)
+	@RequestMapping(value = "/atualizarConvidado/{idConvidado}", method = RequestMethod.GET)
 	public ModelAndView atualizarConvidado(@PathVariable("idConvidado") Long idConvidado) {
 		
 		Eventos eventos = eventosRepository.findById(idConvidado);
 		ModelAndView mv = new ModelAndView("evento/formAtualizarConvidado");
 		
 		Convidado convidado = convidadoRepository.findByIdConvidado(idConvidado);
-		mv.addObject("convidadao", convidado);
+		mv.addObject("convidado", convidado);
 		
 		return mv;
 	
 	}
+	
+	@RequestMapping(value = "/atualizarConvidado/{idConvidado}", method = RequestMethod.POST)
+	public String atualizarContatoPost(@PathVariable("idConvidado") Long idConvidado, @Valid Convidado convidado, BindingResult result, RedirectAttributes attributes) {
+		if (result.hasErrors()) {
+			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+			return "redirect:/atualizarConvidado/{idConvidado}";
+		}
+		
+		Eventos eventos = convidado.getEventos();
+		convidado.setEventos(eventos);
+		
+		cpf = convidado.getCpf();
+		Validacao validacao = new Validacao();
+		boolean valido = validacao.validaCPF(cpf);
+		if (valido) {
+			convidadoRepository.save(convidado);
+			attributes.addFlashAttribute("mensagem", "Convidado atualizado com sucesso");
+			Long idEvento = eventos.getId();
+			String id = "" + idEvento;
+			return "redirect:/" + id;
+		} else {
+			attributes.addFlashAttribute("mensagem", "CPF inválido");
+			return "redirect:/atualizarConvidado/{idConvidado}";
+		}
+		
+		
+	}
+	
 	
 	
 	//Deleta um evento da lista
