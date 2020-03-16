@@ -44,9 +44,9 @@ public class EventosController {
 	public String form(@Valid Eventos eventos, BindingResult result, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
-			return "redirect:/eventos";
+			return "redirect:/cadastrarEvento";
 		}
-		
+	
 		eventosRepository.save(eventos);
 		attributes.addFlashAttribute("mensagem", "Evento cadastrado com sucesso!");
 		return "redirect:/eventos";
@@ -66,7 +66,6 @@ public class EventosController {
 	@RequestMapping(value = "/atualizar/{id}", method = RequestMethod.POST)
 	public String atualizarEventoPost(@PathVariable("id") Long id, @Valid Eventos eventos, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			System.out.println("AQUIIIIII" + result.getAllErrors());
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 			return "redirect:/atualizar/{id}";
 		}
@@ -121,6 +120,22 @@ public class EventosController {
 			return "redirect:/{id}";
 		}
 	}
+	
+	//Atualiza um convidado da lista
+	
+	@RequestMapping(value = "/atualizarConvidado/{idConvidado/", method = RequestMethod.GET)
+	public ModelAndView atualizarConvidado(@PathVariable("idConvidado") Long idConvidado) {
+		
+		Eventos eventos = eventosRepository.findById(idConvidado);
+		ModelAndView mv = new ModelAndView("evento/formAtualizarConvidado");
+		
+		Convidado convidado = convidadoRepository.findByIdConvidado(idConvidado);
+		mv.addObject("convidadao", convidado);
+		
+		return mv;
+	
+	}
+	
 	
 	//Deleta um evento da lista
 	

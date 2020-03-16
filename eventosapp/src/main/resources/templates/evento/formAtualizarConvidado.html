@@ -24,26 +24,25 @@
 	</header>
 	
 	<th:block th:include="mensagemValidacao"></th:block>
-	
-	<div class="container formAtualizarEvento">
-		<form method="post" th:action="@{/atualizar/{id}(id=${eventos.id})}" th:object="${eventos}">
-			<div class="row">
-				Nome: <input type="text" th:field="*{nome}" />
-				<div class="input-field col s6">
-					Local: <input type="text" th:field="*{local}"/>
-				</div>
-				<div class="input-field col s3">
-					Data: <input type="date" th:field="*{data}"/>
-				</div>
-				<div class="input-field col s3">
-					Horário: <input type="time" th:field="*{horario}"/>
-				</div>
-			</div>
-			<button class="waves-effect waves-light btn light green darken-3" type="submit">Salvar</button>
-		</form>
-		
-	
-	</div>
+
+	<table class="container tabelaConvidado">
+		<thead>
+			<tr>
+				<th>Nome Convidado</th>
+				<th>CPF</th>
+				<th>Atualizar</th>
+				<th>Deletar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="convidado : ${convidado}">
+				<td><span th:text="${convidado.nomeConvidado}"></span></td>
+				<td><span th:text="${convidado.cpf}"></span></td>
+				<td><a class="waves-effect waves-light btn-small light green darken-3" th:href="${(#mvc.url('EC#atualizarConvidado').arg(0, convidado.idConvidado).build()})"></a><i class="material-icons center">delete</i></a></td>
+				<td><a class="waves-effect waves-light btn-small red darken-1" th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.idConvidado)).build()}"><i class="material-icons center">delete</i></a></td>
+			</tr>
+		</tbody>
+	</table>
 	
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 
